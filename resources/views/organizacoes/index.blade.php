@@ -43,14 +43,30 @@
 
                 <td>
 
-                    <a href="{{ route('organizacoes.edit', $organizacao) }}"
-                       class="btn btn-warning btn-sm">
+    <a href="{{ route('organizacoes.edit', $organizacao) }}"
+       class="btn btn-warning btn-sm">
+        Editar
+    </a>
 
-                        Editar
+    <form action="{{ route('organizacoes.destroy', $organizacao) }}"
+          method="POST"
+          class="d-inline">
 
-                    </a>
+        @csrf
+        @method('DELETE')
 
-                </td>
+        <button
+            type="submit"
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('Tem certeza que deseja excluir esta organização?')">
+
+            Excluir
+
+        </button>
+
+    </form>
+
+</td>
 
             </tr>
 

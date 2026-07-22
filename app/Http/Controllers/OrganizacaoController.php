@@ -64,11 +64,12 @@ class OrganizacaoController extends Controller
         ->with('success', 'Organização atualizada com sucesso!');
 }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Organizacao $organizacao)
-    {
-        //
-    }
+{
+    $organizacao->delete();
+
+    return redirect()
+        ->route('organizacoes.index')
+        ->with('success', 'Organização excluída com sucesso!');
+}
 }
