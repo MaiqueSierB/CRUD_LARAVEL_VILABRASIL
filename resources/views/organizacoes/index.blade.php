@@ -13,6 +13,11 @@
     </a>
 
 </div>
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
 <table class="table table-striped table-hover">
 
@@ -21,7 +26,7 @@
         <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th width="150">Ações</th>
+            <th width="180">Ações</th>
         </tr>
 
     </thead>

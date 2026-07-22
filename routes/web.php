@@ -8,5 +8,11 @@ Route::get('/', function () {
     return redirect()->route('colaboradores.index');
 });
 
-Route::resource('colaboradores', ColaboradorController::class);
-Route::resource('organizacoes', OrganizacaoController::class);
+Route::resource('colaboradores', ColaboradorController::class)
+    ->parameters([
+        'colaboradores' => 'colaborador',
+    ]);
+Route::resource('organizacoes', OrganizacaoController::class)
+    ->parameters([
+        'organizacoes' => 'organizacao',
+    ]);

@@ -44,21 +44,25 @@ class OrganizacaoController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Organizacao $organizacao)
-    {
-        //
-    }
+{
+    return view('organizacoes.edit', compact('organizacao'));
+}
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Organizacao $organizacao)
-    {
-        //
-    }
+{
+    $request->validate([
+        'nome' => 'required|max:255|unique:organizacoes,nome,' . $organizacao->id,
+    ]);
+
+    $organizacao->update([
+        'nome' => $request->nome,
+    ]);
+
+    return redirect()
+        ->route('organizacoes.index')
+        ->with('success', 'Organização atualizada com sucesso!');
+}
 
     /**
      * Remove the specified resource from storage.
