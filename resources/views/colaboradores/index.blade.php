@@ -4,16 +4,25 @@
 
 @section('content')
 
-<h1 class="mb-4">
-    Colaboradores
-</h1>
 
-<a href="{{ route('colaboradores.create') }}"
-   class="btn btn-primary mb-3">
 
-    Novo Colaborador
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-</a>
+    <h1>Colaboradores</h1>
+
+    <a href="{{ route('colaboradores.create') }}"
+       class="btn btn-primary">
+
+        Novo Colaborador
+
+    </a>
+
+</div>
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
 <table class="table table-striped table-hover">
 
@@ -45,17 +54,35 @@
 
             <td>{{ $colaborador->organizacao->nome ?? '-' }}</td>
 
-            <td>
+          <td>
 
-                <a
-                    href="{{ route('colaboradores.edit', $colaborador) }}"
-                    class="btn btn-warning btn-sm">
+    <a
+        href="{{ route('colaboradores.edit', $colaborador) }}"
+        class="btn btn-warning btn-sm">
 
-                    Editar
+        Editar
 
-                </a>
+    </a>
 
-            </td>
+    <form
+        action="{{ route('colaboradores.destroy', $colaborador) }}"
+        method="POST"
+        class="d-inline">
+
+        @csrf
+        @method('DELETE')
+
+        <button
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('Deseja realmente excluir este colaborador?')">
+
+            Excluir
+
+        </button>
+
+    </form>
+
+</td>
 
         </tr>
 
