@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 
 class OrganizacaoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
 {
     $organizacoes = Organizacao::orderBy('nome')->get();
@@ -36,14 +34,7 @@ class OrganizacaoController extends Controller
         ->route('organizacoes.index')
         ->with('success', 'Organização cadastrada com sucesso!');
 }
-    /**
-     * Display the specified resource.
-     */
-    public function show(Organizacao $organizacao)
-    {
-        //
-    }
-
+  
     public function edit(Organizacao $organizacao)
 {
     return view('organizacoes.edit', compact('organizacao'));

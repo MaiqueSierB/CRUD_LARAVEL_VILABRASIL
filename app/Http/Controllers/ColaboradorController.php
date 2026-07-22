@@ -45,13 +45,7 @@ public function index()
         ->route('colaboradores.index')
         ->with('success', 'Colaborador cadastrado com sucesso!');
 }
-    /**
-     * Display the specified resource.
-     */
-    public function show(Colaborador $colaborador)
-    {
-        //
-    }
+
 
  public function edit(Colaborador $colaborador)
 {
