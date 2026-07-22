@@ -6,16 +6,14 @@
 
 
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="row mb-4">
 
-    <h1>Colaboradores</h1>
+  <h1 class="mb-3">Colaboradores</h1>
 
-    <a href="{{ route('colaboradores.create') }}"
-       class="btn btn-primary">
-
-        Novo Colaborador
-
-    </a>
+<a href="{{ route('colaboradores.create') }}"
+   class="btn btn-primary mb-4">
+    Novo Colaborador
+</a>
 <form method="GET"
       action="{{ route('colaboradores.index') }}"
       class="mb-3">
@@ -51,6 +49,8 @@
         {{ session('success') }}
     </div>
 @endif
+<div class="table-responsive">
+
 
 <table class="table table-striped table-hover">
 
@@ -131,5 +131,5 @@
     </tbody>
 
 </table>
-
+</div>
 @endsection
