@@ -13,7 +13,7 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
@@ -39,22 +39,22 @@
 
     </nav>
 
-    <div class="container mt-4">
+    <main class="container flex-grow-1 mt-4">
 
         @yield('content')
 
-    </div>
+    </main>
 
 
-  <footer class="bg-dark text-white text-center py-2 mt-5">
-    <p class="mb-0">
-        Maique dos Reis Bento
-    </p>
+    <footer class="bg-dark text-white text-center py-2 mt-auto">
+        <p class="mb-0">
+            Maique dos Reis Bento
+        </p>
 
-    <small>
-        &copy; {{ date('Y') }} Meu Projeto Laravel.
-    </small>
-</footer>
+        <small>
+            &copy; {{ date('Y') }} Meu Projeto Laravel.
+        </small>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 
