@@ -11,8 +11,11 @@ Route::get('/', function () {
 Route::resource('colaboradores', ColaboradorController::class)
     ->parameters([
         'colaboradores' => 'colaborador',
-    ]);
+    ])
+    ->except('show');
+    
 Route::resource('organizacoes', OrganizacaoController::class)
     ->parameters([
         'organizacoes' => 'organizacao',
-    ]);
+    ])
+    ->except('show');

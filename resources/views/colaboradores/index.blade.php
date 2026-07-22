@@ -16,7 +16,35 @@
         Novo Colaborador
 
     </a>
+<form method="GET"
+      action="{{ route('colaboradores.index') }}"
+      class="mb-3">
 
+    <div class="input-group">
+
+        <input
+            type="text"
+            name="pesquisa"
+            class="form-control"
+            placeholder="Pesquisar por nome, cargo ou organização..."
+            value="{{ $pesquisa }}">
+
+        <button class="btn btn-primary">
+
+            Buscar
+
+        </button>
+
+        <a href="{{ route('colaboradores.index') }}"
+           class="btn btn-secondary">
+
+            Limpar
+
+        </a>
+
+    </div>
+
+</form>
 </div>
 @if(session('success'))
     <div class="alert alert-success">

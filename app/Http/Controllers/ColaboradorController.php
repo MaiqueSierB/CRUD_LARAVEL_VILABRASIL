@@ -11,11 +11,29 @@ class ColaboradorController extends Controller
 {
 
 
-public function index()
+public function index(Request $request)
 {
-    $colaboradores = Colaborador::with('organizacao')->get();
+    $pesquisa = $request->pesquisa;
 
-    return view('colaboradores.index', compact('colaboradores'));
+    $colaboradores = Colaborador::with('organizacao')
+        ->when($pesquisa, function ($query) use ($pesquisa) {
+
+            $query->where('nome', 'like', "%{$pesquisa}%")
+                ->orWhere('cargo', 'like', "%{$pesquisa}%")
+                ->orWhereHas('organizacao', function ($q) use ($pesquisa) {
+
+                    $q->where('nome', 'like', "%{$pesquisa}%");
+
+                });
+
+        })
+        ->orderBy('nome')
+        ->get();
+
+    return view('colaboradores.index', compact(
+        'colaboradores',
+        'pesquisa'
+    ));
 }
 
 
@@ -33,6 +51,13 @@ public function index()
         'tipo' => 'required|in:interno,externo',
         'organizacao_id' => 'nullable|required_if:tipo,externo|exists:organizacoes,id',
     ]);
+
+    // se for colaborador interno, remove a organizacao. servir como segunda validacao pra caso altere pelo url
+    if ($request->tipo === 'interno') {
+        $request->merge([
+            'organizacao_id' => null
+        ]);
+    }
 
     Colaborador::create([
         'nome' => $request->nome,

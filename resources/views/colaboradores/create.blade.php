@@ -49,7 +49,7 @@
             <div class="mb-3">
                 <label class="form-label">Tipo</label>
 
-                <select name="tipo" class="form-select">
+                <select id="tipo" name="tipo" class="form-select">
 
                     <option value="">Selecione...</option>
 
@@ -65,7 +65,7 @@
 
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3" id="organizacaoDiv">
 
                 <label class="form-label">Organização</label>
 
@@ -105,4 +105,32 @@
 
 </div>
 
+<script>
+
+const tipo = document.getElementById('tipo');
+const organizacaoDiv = document.getElementById('organizacaoDiv');
+const organizacaoSelect = document.querySelector('select[name="organizacao_id"]');
+
+function atualizarOrganizacao() {
+
+    if (tipo.value === 'externo') {
+
+        organizacaoDiv.style.display = 'block';
+
+    } else {
+
+        organizacaoDiv.style.display = 'none';
+        organizacaoSelect.value = '';
+
+    }
+
+}
+
+tipo.addEventListener('change', atualizarOrganizacao);
+
+atualizarOrganizacao();
+
+</script>
+
 @endsection
+
